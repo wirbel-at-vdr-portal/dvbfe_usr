@@ -1,3 +1,9 @@
+/* SPDX-License-Identifier: LGPL-2.1+ WITH Linux-syscall-note */
+#pragma once
+
+/*******************************************************************************
+ * used to query the DTV frontends capabilities.
+ ******************************************************************************/
 
 enum fe_caps {
   FE_IS_STUPID                   =  0,        /* empty capabilities                               */
@@ -24,13 +30,30 @@ enum fe_caps {
   FE_CAN_HIERARCHY_AUTO          = (1 << 20), /* DVB-T, fe supports auto detection of hierarchy   */
   FE_CAN_8VSB                    = (1 << 21), /* ATSC, fe supports terrestrial VSB8 modulation    */
   FE_CAN_16VSB                   = (1 << 22), /* ATSC, fe supports terrestrial VSB16 modulation   */
-/*FE_HAS_EXTENDED_CAPS           = (1 << 23),    not in use.                                      */
-/*                               = (1 << 24),    not defined.                                     */
-/*                               = (1 << 25),    not defined.                                     */
+/*                               = (1 << 23),    not in use.                                      */
+/*                               = (1 << 24),    not in use.                                      */
+/*                               = (1 << 25),    not in use.                                      */
   FE_CAN_MULTISTREAM             = (1 << 26), /* DVB-S2(X), fe supports multi-stream per PLP      */
   FE_CAN_TURBO_FEC               = (1 << 27), /* DVB-S/S2, fe supports turbo fec                  */
   FE_CAN_2G_MODULATION           = (1 << 28), /* DVB-(S/C/T)2, fe 2nd. gen delivery system        */
-/*FE_NEEDS_BENDING               = (1 << 29),    not in use.                                      */
+/*                               = (1 << 29),    not in use.                                      */
   FE_CAN_RECOVER                 = (1 << 30), /* fe can recover from cable unplug. Do not use.    */
   FE_CAN_MUTE_TS                 = (1 << 31)  /* fe can mute (unwanted/broken) spurious TS data   */
 };
+
+struct dvb_frontend_info {
+  char name[128];                             /* Human readable name of the frontend              */
+  enum { FE_TYPE_IS_DEPRECATED } deprecated1; /* do not use.                                      */
+  __u32 frequency_min;                        /* Minimum frequency, kHz Satellite, Hz otherwise.  */
+  __u32 frequency_max;                        /* Maximum frequency, kHz Satellite, Hz otherwise.  */
+  __u32 frequency_stepsize;                   /* frequency is rounded to multiples of this value. */
+  __u32 frequency_tolerance;                  /* Frequency tolerance                              */
+  __u32 symbol_rate_min;                      /* Minimum symbol rate in bauds (Cable/Satellite)   */ 
+  __u32 symbol_rate_max;                      /* Maximum symbol rate in bauds (Cable/Satellite)   */ 
+  __u32 symbol_rate_tolerance;                /* Symbol rate tolerance                            */
+  __u32 deprecated2;                          /* do not use.                                      */
+	enum fe_caps caps;
+};
+
+#define FE_GET_INFO   _IOR('o', 61, struct dvb_frontend_info)
+
