@@ -3,7 +3,7 @@
 
 /*******************************************************************************
  * Tuning: DTMB time interleaving
- * Please note that, currently, only DTMB uses it.
+ * NOTE: currently used only by DTMB.
  ******************************************************************************/
 
 enum fe_interleaving {
