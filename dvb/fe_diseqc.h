@@ -9,7 +9,7 @@
 
 /*******************************************************************************
  * Control Satellite Equipment with 13V/18V DC voltage (polarization) and
- * 22kHz Tones.
+ * 22kHz Tone (high/low band) and satellite position A/B.
  ******************************************************************************/
 enum fe_sec_mini_cmd {
   SEC_MINI_A,                                 /* Send 22kHz '0' Tone Burst for Sat Position A     */
