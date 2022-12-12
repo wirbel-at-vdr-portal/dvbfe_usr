@@ -5,15 +5,15 @@
  * DVBv5 commands
  ******************************************************************************/
 
-#define DTV_UNDEFINED                               0 /* doesnt do anything on Get/Set                                                             */
-#define DTV_TUNE                                    1 /* Start tune request with current params                                                    */
+#define DTV_UNDEFINED                               0 /* NOOP on Get/Set                                                                           */
+#define DTV_TUNE                                    1 /* Start tune request with currently cached params                                           */
 #define DTV_CLEAR                                   2 /* Reset cached properties to defaults.                                                      */
 #define DTV_FREQUENCY                               3 /* Get/Set Frequency. Sat:kHz, Cable/Terr: Hz                                                */
 #define DTV_MODULATION                              4 /* Get/Set modulation type, one of enum fe_modulation                                        */
 #define DTV_BANDWIDTH_HZ                            5 /* DVB-T/T2, bandwidth in Hz: 0(AUTO), 1712000, 5000000, 6000000, 7000000, 8000000, 10000000 */
 #define DTV_INVERSION                               6 /* Get/Set spectral Inversion, one of enum fe_spectral_inversion                             */
 #define DTV_DISEQC_MASTER                           7 /* Currently not implemented.                                                                */
-#define DTV_SYMBOL_RATE                             8 /* Get/Set symbol rate, in bauds, Cable and satellite.                                       */
+#define DTV_SYMBOL_RATE                             8 /* Get/Set symbol rate, in bauds. Cable and satellite.                                       */
 #define DTV_INNER_FEC                               9 /* Get/Set inner FEC, one of fe_code_rate. Cable and satellite.                              */
 #define DTV_VOLTAGE                                10 /* Get/Set DC voltage for satellite equipment control, one of fe_sec_voltage.                */
 #define DTV_TONE                                   11 /* Currently not implemented.                                                                */
@@ -42,7 +42,7 @@
 #define DTV_ISDBT_LAYERC_TIME_INTERLEAVING         34 /*                                                                                           */
 #define DTV_API_VERSION                            35 /* Returns the major/minor version of the DVB API.                                           */
 #define DTV_CODE_RATE_HP                           36 /* Get/Set DVB-T/T2 coderate high priority, one of fe_code_rate.                             */
-#define DTV_CODE_RATE_LP                           37 /* Get/Set DVB-T/T2 coderate high priority, one of fe_code_rate.                             */
+#define DTV_CODE_RATE_LP                           37 /* Get/Set DVB-T/T2 coderate low priority, one of fe_code_rate.                              */
 #define DTV_GUARD_INTERVAL                         38 /* Get/Set DVB-T/T2 guard interval, one of fe_guard_interval.                                */
 #define DTV_TRANSMISSION_MODE                      39 /* Get/Set OFDM (ie DVB-T/T2, ISDB-T) transmission mode, one of fe_transmit_mode.            */
 #define DTV_HIERARCHY                              40 /* Get/Set DVB-T hierarchy, one of fe_hierarchy. Usually HIERARCHY_NONE.                     */
